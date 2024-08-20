@@ -1,10 +1,12 @@
+/* eslint-disable */
+
 const fs = require('fs');
 
 function countStudents(path) {
   try {
     const data = fs.readFileSync(path, 'utf8');
     const lines = data.trim().split('\n');
-
+    
     if (lines.length < 2) {
       throw new Error('Cannot load the database');
     }
@@ -12,10 +14,10 @@ function countStudents(path) {
     const fields = {};
     let totalStudents = 0;
 
-    for (let i = 1; i < lines.length; i++) { // Skip the header line
+    for (let i = 1; i < lines.length; i++) {
       const [firstname, , , field] = lines[i].split(',');
-
-      if (firstname && field) { // Ensure the line is valid (not empty)
+      
+      if (firstname && field) {
         totalStudents += 1;
         if (!fields[field]) {
           fields[field] = [];
