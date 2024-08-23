@@ -1,7 +1,8 @@
 {
   "devDependencies": {
     "mocha": "^10.7.3",
-    "mochs": "^0.0.1-security"
+    "mochs": "^0.0.1-security",
+    "sinon": "^18.0.0"
   },
   "scripts": {
     "test": "mocha"
