@@ -1,27 +1,28 @@
-// full_server/utils.js
-const fs = require('fs').promises;
+/*
+eslint-disable */
+const { readFile } = require('fs');
 
-async function readDatabase(filePath) {
-  try {
-    const data = await fs.readFile(filePath, 'utf8');
-    const lines = data.trim().split('\n').slice(1); // Remove the header
-
-    const studentsByField = {};
-
-    for (const line of lines) {
-      const [firstname, , , field] = line.split(',');
-      if (firstname && field) {
-        if (!studentsByField[field]) {
-          studentsByField[field] = [];
+module.exports = function readDatabase(filePath) {
+  const students = {};
+  return new Promise((resolve, reject) => {
+    readFile(filePath, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        const lines = data.toString().split('\n');
+        const noHeader = lines.slice(1);
+        for (let i = 0; i < noHeader.length; i += 1) {
+          if (noHeader[i]) {
+            const field = noHeader[i].toString().split(',');
+            if (Object.prototype.hasOwnProperty.call(students, field[3])) {
+              students[field[3]].push(field[0]);
+            } else {
+              students[field[3]] = [field[0]];
+            }
+          }
         }
-        studentsByField[field].push(firstname);
+        resolve(students);
       }
-    }
-
-    return studentsByField;
-  } catch (err) {
-    throw new Error('Cannot load the database');
-  }
-}
-
-module.exports = readDatabase;
+    });
+  });
+};

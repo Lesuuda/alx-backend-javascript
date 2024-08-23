@@ -1,7 +1,8 @@
 /* eslint-disable */
 class AppController {
-    static getHomepage(req, res) {
-        res.status.send('Hello Holberton School!');
+    static getHomepage(request, response) {
+      response.status(200).send('Hello Holberton School!');
     }
-}
-module.exports = AppController
+  }
+  
+  module.exports = AppController;

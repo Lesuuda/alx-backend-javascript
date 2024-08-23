@@ -1,16 +1,15 @@
 /* eslint-disable */
-
 const express = require('express');
-const routes = require('./routes/index');
+
+const router = require('./routes/index');
 
 const app = express();
+const port = 1245;
 
-app.use(routes);
+app.use('/', router);
+app.use('/students', router);
+app.use('/students/:major', router);
 
-const PORT = 1245;
-
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
+app.listen(port);
 
 export default app;
