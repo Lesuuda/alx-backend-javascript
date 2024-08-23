@@ -1,14 +1,15 @@
 {
-  "devDependencies": {
-    "mocha": "^10.7.3",
-    "mochs": "^0.0.1-security",
-    "sinon": "^18.0.0"
-  },
+  "name": "0x06-unittests_in_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
-  "dependencies": {
-    "chai": "^5.1.1"
-  },
-  "type": "module"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.4.0"
+  }
 }
