@@ -1,21 +1,14 @@
-/* eslint-disable */
-
-function calculateNumber(type, a, b) {
-    const roundA = Math.round(a);
-    const roundB = Math.round(b);
-
-    switch(type) {
-        case 'SUM':
-            return roundA + roundB;
-        case 'SUBTRACT':
-            return roundA - roundB;
-        case 'DIVIDE':
-            if (roundB === 0) {
-                return 'Error';
-            }
-            return roundA / roundB
-        default:
-            throw new Error('Invalid operation type');
+const calculateNumber = (type, a, b) => {
+    if (type === 'SUM') {
+      return Math.round(a) + Math.round(b);
     }
-}
-export default calculateNumber;
+    if (type === 'SUBTRACT') {
+      return Math.round(a) - Math.round(b);
+    }
+    if (type === 'DIVIDE') {
+      return Math.round(b) === 0 ? 'Error' : Math.round(a) / Math.round(b);
+    }
+    return 0;
+  };
+  
+  module.exports = calculateNumber;
